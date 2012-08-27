@@ -1,0 +1,55 @@
+{% extends "root.html" %}
+
+{% block js_includes %}
+
+<script language="javascript">
+  $(document).ready(function(){
+  $(".combobox").combobox();
+  });
+  $(".typeahead").typeahead()
+
+  function viewUser() {
+    window.location.href = '/u/' + $("#userhash").val();
+  $("#userhash").val();
+  }
+</script>
+
+{% endblock js_includes %}
+
+{% block main %}
+
+<style type="text/css">
+  body {
+    padding-bottom: 40px;
+  }
+</style>
+
+<div class="container" style="padding-top: 50px">
+  <div class="row">
+    <div class="span4 offset4">
+      <h4>USER SUBSCRIPTION HASH:</h4>
+      <br>
+      <form name="testform" style="text-align:center">
+        <p>
+          <select class="combobox"
+                  id="userhash"
+                  name="userhash"
+                  style="float:middle">
+            <option value=""></option>
+            {% for i in dir_ls %}
+              <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+          </select>
+          <button type="button"
+                  style="float:left;"
+                  class="btn btn-large"
+                  onClick="viewUser();">
+            ENTER</button>
+      </form>
+      <br><br><br><br>
+      <b>Packet Directory:</b> {{ dir }}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
